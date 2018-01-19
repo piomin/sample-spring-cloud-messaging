@@ -1,0 +1,41 @@
+spring:  
+  application:
+    name: order-service
+  rabbitmq:
+    host: 192.168.99.100
+    port: 5672
+  cloud:  
+    stream:
+      rabbit:
+        bindings:
+          output:
+            producer:
+              exchangeType: direct
+      
+---
+spring:
+  profiles: zone1
+eureka:
+  instance:
+    metadataMap:
+      zone: zone1
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      preferSameZoneEureka: true
+server:  
+  port: ${PORT:8090}
+
+---
+spring:
+  profiles: zone2
+eureka:
+  instance:
+    metadataMap:
+      zone: zone2
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      preferSameZoneEureka: true
+server:  
+  port: ${PORT:9090}
