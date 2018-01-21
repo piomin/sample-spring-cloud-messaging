@@ -6,10 +6,18 @@ spring:
     port: 5672
   cloud:  
     stream:
+      bindings:
+        output:
+          destination: orders-out
+        input:
+          destination: orders-in
       rabbit:
         bindings:
           output:
             producer:
+              exchangeType: direct
+          input:
+            consumer:
               exchangeType: direct
       
 ---
