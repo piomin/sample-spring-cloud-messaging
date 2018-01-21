@@ -4,7 +4,7 @@
 			<level>INFO</level>
 		</filter>
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} %-5level %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} %-5level [%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}] %msg%n</pattern>
 			<charset>utf8</charset>
 		</encoder>
 	</appender>

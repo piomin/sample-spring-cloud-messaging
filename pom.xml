@@ -30,7 +30,10 @@
 
 	<modules>
 		<module>account-service</module>
+		<module>discovery-service</module>
+		<module>gateway-service</module>
 		<module>order-service</module>
+		<module>product-service</module>
 	</modules>
 	
 </project>

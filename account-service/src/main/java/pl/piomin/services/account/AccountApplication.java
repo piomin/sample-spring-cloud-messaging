@@ -1,9 +1,12 @@
 package pl.piomin.services.account;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.sleuth.Sampler;
 import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -13,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pl.piomin.services.account.model.Account;
 import pl.piomin.services.account.model.Order;
@@ -21,8 +25,13 @@ import pl.piomin.services.account.service.AccountService;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableFeignClients
 @EnableBinding(Processor.class)
 public class AccountApplication {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(AccountApplication.class);
+	
+	private ObjectMapper mapper = new ObjectMapper();
 	
 	@Autowired
 	AccountService service;
@@ -34,6 +43,7 @@ public class AccountApplication {
 	@Bean
 	@StreamListener(Processor.INPUT)
 	public void receiveOrder(Order order) throws JsonProcessingException {
+		LOGGER.info("Order received: {}", mapper.writeValueAsString(order));
 		service.process(order);
 	}
 	

@@ -20,7 +20,7 @@
 				<pattern>
 					<pattern>
 						{
-						"appName": "order-service"
+						"appName": "product-service"
 						}
 					</pattern>
 				</pattern>
