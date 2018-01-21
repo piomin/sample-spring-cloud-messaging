@@ -40,7 +40,6 @@ public class AccountApplication {
 		new SpringApplicationBuilder(AccountApplication.class).web(true).run(args);
 	}
 	
-	@Bean
 	@StreamListener(Processor.INPUT)
 	public void receiveOrder(Order order) throws JsonProcessingException {
 		LOGGER.info("Order received: {}", mapper.writeValueAsString(order));
