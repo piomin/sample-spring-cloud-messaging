@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import pl.piomin.services.order.model.Order;
+import pl.piomin.services.messaging.Order;
 
 public class OrderRepository {
 

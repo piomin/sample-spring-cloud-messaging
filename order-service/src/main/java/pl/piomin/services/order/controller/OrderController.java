@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import pl.piomin.services.messaging.Order;
 import pl.piomin.services.order.messaging.OrderSender;
-import pl.piomin.services.order.model.Order;
 import pl.piomin.services.order.repository.OrderRepository;
 
 @RestController

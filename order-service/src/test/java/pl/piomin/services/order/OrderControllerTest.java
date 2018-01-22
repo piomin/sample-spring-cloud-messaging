@@ -6,8 +6,8 @@ import java.util.Random;
 import org.junit.Test;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import pl.piomin.services.order.model.Order;
-import pl.piomin.services.order.model.OrderStatus;
+import pl.piomin.services.messaging.Order;
+import pl.piomin.services.messaging.OrderStatus;
 
 public class OrderControllerTest {
 

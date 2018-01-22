@@ -5,7 +5,7 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
-import pl.piomin.services.account.model.Order;
+import pl.piomin.services.messaging.Order;
 
 @Service
 public class OrderSender {

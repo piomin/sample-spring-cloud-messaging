@@ -19,9 +19,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pl.piomin.services.account.model.Account;
-import pl.piomin.services.account.model.Order;
 import pl.piomin.services.account.repository.AccountRepository;
 import pl.piomin.services.account.service.AccountService;
+import pl.piomin.services.messaging.Order;
 
 @SpringBootApplication
 @EnableDiscoveryClient

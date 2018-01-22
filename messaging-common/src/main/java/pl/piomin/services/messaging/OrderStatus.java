@@ -1,4 +1,4 @@
-package pl.piomin.services.order.model;
+package pl.piomin.services.messaging;
 
 public enum OrderStatus {
 

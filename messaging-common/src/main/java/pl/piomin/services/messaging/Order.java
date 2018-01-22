@@ -1,4 +1,4 @@
-package pl.piomin.services.account.model;
+package pl.piomin.services.messaging;
 
 import java.util.List;
 

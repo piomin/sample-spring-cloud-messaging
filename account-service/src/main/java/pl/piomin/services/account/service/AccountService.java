@@ -13,10 +13,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.piomin.services.account.client.ProductClient;
 import pl.piomin.services.account.messaging.OrderSender;
 import pl.piomin.services.account.model.Account;
-import pl.piomin.services.account.model.Order;
-import pl.piomin.services.account.model.OrderStatus;
 import pl.piomin.services.account.model.Product;
 import pl.piomin.services.account.repository.AccountRepository;
+import pl.piomin.services.messaging.Order;
+import pl.piomin.services.messaging.OrderStatus;
 
 @Service
 public class AccountService {
