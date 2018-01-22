@@ -15,7 +15,6 @@ spring:
         bindings:
           output:
             producer:
-              exchangeType: direct
               routingKeyExpression: '"#"'
           input:
             consumer:

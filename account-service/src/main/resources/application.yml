@@ -17,9 +17,6 @@ spring:
             producer:
               exchangeType: direct
               routingKeyExpression: '"#"'
-          input:
-            consumer:
-              exchangeType: direct
 
 server:  
   port: ${PORT:8091}
