@@ -13,6 +13,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -41,9 +42,10 @@ public class AccountApplication {
 	}
 	
 	@StreamListener(Processor.INPUT)
-	public void receiveOrder(Order order) throws JsonProcessingException {
+	@SendTo(Processor.OUTPUT)
+	public Order receiveAndSendOrder(Order order) throws JsonProcessingException {
 		LOGGER.info("Order received: {}", mapper.writeValueAsString(order));
-		service.process(order);
+		return service.process(order);
 	}
 	
 	@Bean

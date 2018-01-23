@@ -11,6 +11,16 @@ public class Order {
 	private Long accountId;
 	private List<Long> productIds;
 
+	public Order() {
+		
+	}
+	
+	public Order(OrderStatus status, Long customerId, List<Long> productIds) {
+		this.status = status;
+		this.customerId = customerId;
+		this.productIds = productIds;
+	}
+
 	public Long getId() {
 		return id;
 	}

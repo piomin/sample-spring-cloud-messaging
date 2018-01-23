@@ -11,7 +11,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pl.piomin.services.account.client.ProductClient;
-import pl.piomin.services.account.messaging.OrderSender;
 import pl.piomin.services.account.model.Account;
 import pl.piomin.services.account.model.Product;
 import pl.piomin.services.account.repository.AccountRepository;
@@ -29,10 +28,8 @@ public class AccountService {
 	AccountRepository accountRepository;
 	@Autowired
 	ProductClient productClient;
-	@Autowired
-	OrderSender orderSender;
 	
-	public void process(final Order order) throws JsonProcessingException {
+	public Order process(final Order order) throws JsonProcessingException {
 		LOGGER.info("Order processed: {}", mapper.writeValueAsString(order));
 		List<Account> accounts =  accountRepository.findByCustomer(order.getCustomerId());
 		Account account = accounts.get(0);
@@ -46,8 +43,7 @@ public class AccountService {
 		} else {
 			order.setStatus(OrderStatus.REJECTED);
 		}
-		orderSender.send(order);
-		LOGGER.info("Order response sent: {}", mapper.writeValueAsString(order));
+		return order;
 	}
 	
 }
