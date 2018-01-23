@@ -10,7 +10,10 @@ spring:
         output:
           destination: orders-in
         input:
+          consumer:
+            partitioned: true
           destination: orders-out
+          group: product
       rabbit:
         bindings:
           output:
@@ -25,3 +28,23 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      
+---
+spring:
+  profiles: instance1
+  cloud:
+    stream:
+      instanceCount: 2
+      instanceIndex: 0
+server:  
+  port: ${PORT:8093}  
+
+---
+spring:
+  profiles: instance2
+  cloud:
+    stream:
+      instanceCount: 2
+      instanceIndex: 1
+server:  
+  port: ${PORT:9093} 

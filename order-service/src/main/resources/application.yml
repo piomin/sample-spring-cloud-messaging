@@ -9,13 +9,13 @@ spring:
       bindings:
         output:
           destination: orders-out
+          producer:
+            partitionKeyExpression: payload.customerId
+            partitionCount: 2
         input:
           destination: orders-in
       rabbit:
         bindings:
-          output:
-            producer:
-              routingKeyExpression: '"#"'
           input:
             consumer:
               exchangeType: direct
