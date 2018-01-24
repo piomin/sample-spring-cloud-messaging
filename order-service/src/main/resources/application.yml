@@ -1,9 +1,8 @@
 spring:  
   application:
     name: order-service
-  rabbitmq:
-    host: 192.168.99.100
-    port: 5672
+  kafka:
+    bootstrap-servers: 192.168.99.100:9092
   cloud:  
     stream:
       bindings:
@@ -14,12 +13,10 @@ spring:
             partitionCount: 2
         input:
           destination: orders-in
-      rabbit:
-        bindings:
-          input:
-            consumer:
-              exchangeType: direct
-
+      kafka:
+        binder:
+          zkNodes: 192.168.99.100
+          
 server:  
   port: ${PORT:8090}
 
