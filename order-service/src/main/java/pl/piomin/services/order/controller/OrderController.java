@@ -19,22 +19,22 @@ import pl.piomin.services.order.repository.OrderRepository;
 @RestController
 public class OrderController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
-	
-	private ObjectMapper mapper = new ObjectMapper();
-	
-	@Autowired
-	OrderRepository repository;
-	@Autowired
-	OrderSender sender;	
-	
-	@PostMapping
-	public Order process(@RequestBody Order order) throws JsonProcessingException {
-		Order o = repository.add(order);
-		LOGGER.info("Order saved: {}", mapper.writeValueAsString(order));
-		boolean isSent = sender.send(o);
-		LOGGER.info("Order sent: {}", mapper.writeValueAsString(Collections.singletonMap("isSent", isSent)));
-		return o;
-	}
-	
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
+
+    private ObjectMapper mapper = new ObjectMapper();
+
+    @Autowired
+    OrderRepository repository;
+    @Autowired
+    OrderSender sender;
+
+    @PostMapping
+    public Order process(@RequestBody Order order) throws JsonProcessingException {
+        Order o = repository.add(order);
+        LOGGER.info("Order saved: {}", mapper.writeValueAsString(order));
+        boolean isSent = sender.send(o);
+        LOGGER.info("Order sent: {}", mapper.writeValueAsString(Collections.singletonMap("isSent", isSent)));
+        return o;
+    }
+
 }

@@ -20,43 +20,43 @@ import java.util.function.Consumer;
 @EnableDiscoveryClient
 @EnableFeignClients
 public class AccountApplication {
-	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AccountApplication.class);
-	
-	private ObjectMapper mapper = new ObjectMapper();
-	
-	@Autowired
-	AccountService service;
-	
-	public static void main(String[] args) {
-		SpringApplication.run(AccountApplication.class, args);
-	}
 
-	@Bean
-	public Consumer<Order> receiveOrder(Order order) {
-		return o -> {
-			try {
-				LOGGER.info("Order received: {}", mapper.writeValueAsString(order));
-				service.process(o);
-			} catch (JsonProcessingException e) {
-				LOGGER.error("Error deserializing the message", e);
-			}
-		};
-	}
-	
-	@Bean
-	public CommonsRequestLoggingFilter requestLoggingFilter() {
-	    CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
-	    loggingFilter.setIncludePayload(true);
-	    loggingFilter.setIncludeHeaders(true);
-	    loggingFilter.setMaxPayloadLength(1000);
-	    loggingFilter.setAfterMessagePrefix("REQ:");
-	    return loggingFilter;
-	}
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccountApplication.class);
+
+    private ObjectMapper mapper = new ObjectMapper();
+
+    @Autowired
+    AccountService service;
+
+    public static void main(String[] args) {
+        SpringApplication.run(AccountApplication.class, args);
+    }
+
+    @Bean
+    public Consumer<Order> receiveOrder(Order order) {
+        return o -> {
+            try {
+                LOGGER.info("Order received: {}", mapper.writeValueAsString(order));
+                service.process(o);
+            } catch (JsonProcessingException e) {
+                LOGGER.error("Error deserializing the message", e);
+            }
+        };
+    }
+
+    @Bean
+    public CommonsRequestLoggingFilter requestLoggingFilter() {
+        CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
+        loggingFilter.setIncludePayload(true);
+        loggingFilter.setIncludeHeaders(true);
+        loggingFilter.setMaxPayloadLength(1000);
+        loggingFilter.setAfterMessagePrefix("REQ:");
+        return loggingFilter;
+    }
 
 //	@Bean
 //	public Sampler defaultSampler() {
 //		return new AlwaysSampler();
 //	}
-	
+
 }

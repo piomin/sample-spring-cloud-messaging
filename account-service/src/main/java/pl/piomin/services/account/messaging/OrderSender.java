@@ -9,11 +9,11 @@ import pl.piomin.services.messaging.Order;
 @Service
 public class OrderSender {
 
-	@Autowired
+    @Autowired
     private StreamBridge source;
 
     public boolean send(Order order) {
-         return this.source.send("output", MessageBuilder.withPayload(order).build());
+        return this.source.send("output", MessageBuilder.withPayload(order).build());
     }
-    
+
 }

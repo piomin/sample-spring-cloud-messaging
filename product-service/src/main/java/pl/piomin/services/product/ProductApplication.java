@@ -12,24 +12,24 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 @EnableDiscoveryClient
 public class ProductApplication {
 
-	@LoadBalanced
-	@Bean
-	RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-	
-	public static void main(String[] args) {
-		SpringApplication.run(ProductApplication.class, args);
-	}
+    @LoadBalanced
+    @Bean
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
-	@Bean
-	public CommonsRequestLoggingFilter requestLoggingFilter() {
-	    CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
-	    loggingFilter.setIncludePayload(true);
-	    loggingFilter.setIncludeHeaders(true);
-	    loggingFilter.setMaxPayloadLength(1000);
-	    loggingFilter.setAfterMessagePrefix("REQ:");
-	    return loggingFilter;
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProductApplication.class, args);
+    }
+
+    @Bean
+    public CommonsRequestLoggingFilter requestLoggingFilter() {
+        CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
+        loggingFilter.setIncludePayload(true);
+        loggingFilter.setIncludeHeaders(true);
+        loggingFilter.setMaxPayloadLength(1000);
+        loggingFilter.setAfterMessagePrefix("REQ:");
+        return loggingFilter;
+    }
 
 }
